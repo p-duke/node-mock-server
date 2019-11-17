@@ -4,7 +4,8 @@
   "description": "Basic node server",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "node index.js",
+    "dev": "nodemon ."
   },
   "author": "p-duke",
   "license": "ISC",
