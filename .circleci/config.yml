@@ -23,13 +23,16 @@ workflows:
   build-deploy:
     jobs:
       - build
-      - hold:
+      - approve-and-deploy:
           type: approval
           requires:
             - build
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
-            - build
+            - approve-and-deploy
           filters:
             branches:
               only: master
