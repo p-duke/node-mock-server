@@ -9,23 +9,3 @@ jobs:
       - run:
           name: install-npm
           command: npm install
-  deploy:
-    docker:
-      - image: buildpack-deps:trusty
-    steps:
-      - checkout
-      - run:
-          name: deploy-master-to-heroku
-          command: echo 'Deployed!'
-workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-        requires:
-          - build
-        filters:
-          branches:
-            only: master
-
