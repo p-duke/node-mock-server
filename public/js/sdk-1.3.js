@@ -48,7 +48,7 @@
   };
 
   // Initialize a WKND object
-  const init = WKND.fn.init = function(selector) {
+  WKND.fn.init = function(selector) {
     match = document.querySelectorAll(selector);
     this.length = 0;
 
