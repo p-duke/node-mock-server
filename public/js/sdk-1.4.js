@@ -36,21 +36,64 @@ const factory = function factory(window) {
         item.classList.remove(className);
       });
       return this;
-    }
+    },
+    find: function find(selector) {
+      let results = [];
+      for (let i = 0; i < match.length; i += 1) {
+        results.push(...match[i].querySelectorAll(selector));
+      }
+      match = results;
+      return match;
+    },
+    text: function text() {
+      let resultString = [];
+      for (let i = 0; i < match.length; i += 1) {
+        resultString.push(match[i].textContent);
+      }
+      return resultString.join(' ');
+    },
+    attr: function attr(attrName, value = false) {
+      if (!value) {
+        return match[0].getAttribute(attrName);
+      }
+
+      for (let i = 0; i < match.length; i += 1) {
+        match[i].setAttribute(attrName, value);
+      }
+
+      return this;
+    },
+    eq: function eq(index) {
+      return this[index];
+    },
+    hide: function hide() {
+      for (let i = 0; i < match.length; i += 1) {
+        match[i].style.display = 'none';
+      }
+    },
+    show: function show() {
+      for (let i = 0; i < match.length; i += 1) {
+        match[i].style.display = '';
+      }
+    },
   };
 
   // Initialize a WKND object
-  WKND.fn.Init = function (selector) {
+  const init = WKND.fn.Init = function (selector, WKND) {
     this.length = 0;
 
     if (!selector) return this;
 
-    match = document.querySelectorAll(selector);
-    if (match.length) {
+    if (selector) {
+      match = document.querySelectorAll(selector);
       match.forEach((el, idx) => {
         this[idx] = el;
         this.length += 1;
       });
+    }
+
+    if (WKND) {
+
     }
 
     return this;
