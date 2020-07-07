@@ -35,6 +35,39 @@ const factory = function factory(window) {
         item.classList.remove(className);
       });
       return this;
+    },
+    text: function text() {
+      const resultString = [];
+      for (let i = 0; i < this.length; i += 1) {
+        resultString.push(this[i].textContent);
+      }
+      return resultString.join(' ');
+    },
+    attr: function attr(attrName, value = false) {
+      if (!value) {
+        return this[0].getAttribute(attrName) || '';
+      }
+
+      for (let i = 0; i < this.length; i += 1) {
+        this[i].setAttribute(attrName, value);
+      }
+
+      return this;
+    },
+    hide: function hide() {
+      for (let i = 0; i < this.length; i += 1) {
+        this[i].style.display = 'none';
+      }
+    },
+    show: function show() {
+      for (let i = 0; i < this.length; i += 1) {
+        const el = this[i];
+        const { display } = el.style;
+
+        if (display === 'none' || display === '') {
+          el.style.display = 'block';
+        }
+      }
     }
   };
 
@@ -58,8 +91,7 @@ const factory = function factory(window) {
   };
 
   // Give the init function the WKND prototype for access to shared public methods
-  WKND.fn.Init.prototype = Object.assign(WKND.fn.Init.prototype, Array.prototype, publicMethods);
-  
+  WKND.fn.Init.prototype = { ...WKND.fn, ...publicMethods };
 
   /* eslint-disable no-param-reassign */
   window.wknd = WKND;
@@ -74,4 +106,6 @@ const init = (window) => {
 const SDK = {
   init
 };
+
+SDK.init(window);
 
