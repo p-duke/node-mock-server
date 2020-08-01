@@ -9,6 +9,7 @@ const users = [];
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+
 /* App Use */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

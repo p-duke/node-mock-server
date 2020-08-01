@@ -1,56 +1,3 @@
-function generateVisitID() {
-  const number22Bit = randomBits(22);
-  const date42Bit = Date.now().toString(2).padStart(42, '0');
-  const id = date42Bit + number22Bit;
-  // console.log(`Binary is: ${id}`);
-  const hexID = binaryToHex(id);
-  // console.log(`Hexadecimal is: ${hexID.result}`);
-  const decimal = hexToDec(hexID.result);
-  // console.log(`Decimal is: ${decimal}`);
-
-  return decimal;
-}
-
-const randomBits = bitSize => Math.trunc(Math.random() * (1 << bitSize)).toString(2).padStart(bitSize, '0');
-
-function binaryToHex(s) {
-    var i, k, part, accum, ret = '';
-    for (i = s.length-1; i >= 3; i -= 4) {
-        // extract out in substrings of 4 and convert to hex
-        part = s.substr(i+1-4, 4);
-        accum = 0;
-        for (k = 0; k < 4; k += 1) {
-            if (part[k] !== '0' && part[k] !== '1') {
-                // invalid character
-                return { valid: false };
-            }
-            // compute the length 4 substring
-            accum = accum * 2 + parseInt(part[k], 10);
-        }
-        if (accum >= 10) {
-            // 'A' to 'F'
-            ret = String.fromCharCode(accum - 10 + 'A'.charCodeAt(0)) + ret;
-        } else {
-            // '0' to '9'
-            ret = String(accum) + ret;
-        }
-    }
-    // remaining characters, i = 0, 1, or 2
-    if (i >= 0) {
-        accum = 0;
-        // convert from front
-        for (k = 0; k <= i; k += 1) {
-            if (s[k] !== '0' && s[k] !== '1') {
-                return { valid: false };
-            }
-            accum = accum * 2 + parseInt(s[k], 10);
-        }
-        // 3 bits, value cannot exceed 2^3 - 1 = 7, just convert
-        ret = String(accum) + ret;
-    }
-    return { valid: true, result: ret };
-}
-
 /**
  * A function for converting hex <-> dec w/o loss of precision.
  *
@@ -151,42 +98,6 @@ function hexToDec(hexStr) {
   return convertBase(hexStr, 16, 10);
 }
 
-function binToHex(bin) {
-  console.log(`Bin is: ${bin}`);
-  const hex = [];
-  let start = bin.length - 4;
-  let end = bin.length - 0;
-  const binToHexLookup = {
-    '0000':'0',
-    '0001':'1',
-    '0010':'2',
-    '0011':'3',
-    '0100':'4',
-    '0101':'5',
-    '0110':'6',
-    '0111':'7',
-    '1000':'8',
-    '1001':'9',
-    '1010':'A',
-    '1011':'B',
-    '1100':'C',
-    '1101':'D',
-    '1110':'E',
-    '1111':'F',
-  };
-
-  for (let i = 0; i < bin.length; i += 4) {
-    const group = bin.substring(start, end).padStart(4, '0');
-    hex.unshift(binToHexLookup[group]);
-    start -= 4;
-    end -= 4;
-  }
-
-  return hex.join('');
+export {
+  hexToDec
 }
-
-const results = generateVisitID();
-const randBits = randomBits(22);
-console.log(`Binary to Hex: ${binToHex(randBits)}`);
-
-
