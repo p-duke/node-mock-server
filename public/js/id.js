@@ -2,16 +2,54 @@ function generateVisitID() {
   const number22Bit = randomBits(22);
   const date42Bit = Date.now().toString(2).padStart(42, '0');
   const id = date42Bit + number22Bit;
-  // console.log(`Binary is: ${id}`);
-  const hexID = binaryToHex(id);
-  // console.log(`Hexadecimal is: ${hexID.result}`);
-  const decimal = hexToDec(hexID.result);
-  // console.log(`Decimal is: ${decimal}`);
 
-  return decimal;
+  const myHexID = binToHex(id);
+  const benchHexID = binaryToHex(id);
+
+  const myDec = hexToDec(myHexID);
+  const benchDec = hexToDec(benchHexID.result);
+
+  return {
+    myDec,
+    benchDec,
+  };
 }
 
 const randomBits = bitSize => Math.trunc(Math.random() * (1 << bitSize)).toString(2).padStart(bitSize, '0');
+
+function binToHex(bin) {
+  const hex = [];
+  const binToHexLookup = {
+    '0000':'0',
+    '0001':'1',
+    '0010':'2',
+    '0011':'3',
+    '0100':'4',
+    '0101':'5',
+    '0110':'6',
+    '0111':'7',
+    '1000':'8',
+    '1001':'9',
+    '1010':'A',
+    '1011':'B',
+    '1100':'C',
+    '1101':'D',
+    '1110':'E',
+    '1111':'F',
+  };
+
+  let start = bin.length - 4;
+  let end = bin.length - 0;
+
+  for (let i = 0; i < bin.length; i += 4) {
+    const group = bin.substring(start, end).padStart(4, '0');
+    hex.unshift(binToHexLookup[group]);
+    start -= 4;
+    end -= 4;
+  }
+
+  return hex.join('');
+}
 
 function binaryToHex(s) {
     var i, k, part, accum, ret = '';
@@ -151,42 +189,17 @@ function hexToDec(hexStr) {
   return convertBase(hexStr, 16, 10);
 }
 
-function binToHex(bin) {
-  console.log(`Bin is: ${bin}`);
-  const hex = [];
-  let start = bin.length - 4;
-  let end = bin.length - 0;
-  const binToHexLookup = {
-    '0000':'0',
-    '0001':'1',
-    '0010':'2',
-    '0011':'3',
-    '0100':'4',
-    '0101':'5',
-    '0110':'6',
-    '0111':'7',
-    '1000':'8',
-    '1001':'9',
-    '1010':'A',
-    '1011':'B',
-    '1100':'C',
-    '1101':'D',
-    '1110':'E',
-    '1111':'F',
-  };
-
-  for (let i = 0; i < bin.length; i += 4) {
-    const group = bin.substring(start, end).padStart(4, '0');
-    hex.unshift(binToHexLookup[group]);
-    start -= 4;
-    end -= 4;
-  }
-
-  return hex.join('');
-}
-
-const results = generateVisitID();
-const randBits = randomBits(22);
-console.log(`Binary to Hex: ${binToHex(randBits)}`);
-
+// Testing
+// const incorrect = [];
+// for (let i = 0; i < 1000000; i += 1) {
+  // const number22Bit = randomBits(22);
+  // const myHexID = binToHex(number22Bit);
+  // const benchHexID = binaryToHex(number22Bit);
+  // if (myHexID === benchHexID.result) {
+    // console.log(true);
+  // } else {
+    // console.log(false);
+    // incorrect.push({ 'my': myHexID, 'bench': benchHexID });
+  // }
+// }
 
