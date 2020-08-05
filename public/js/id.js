@@ -15,7 +15,24 @@ function generateVisitID() {
   };
 }
 
-const randomBits = bitSize => Math.trunc(Math.random() * (1 << bitSize)).toString(2).padStart(bitSize, '0');
+function generateDeviceID() {
+  const binary64Bit = randomBits(64);
+  const hexID = binToHex(binary64Bit);
+  const decimal64Bit = hexToDec(hexID);
+
+  return decimal64Bit;
+}
+
+const randomBits = bitSize => {
+  let bin = '';
+  for (let i = 0; i < bitSize - 1; i += 1) {
+    const randomBit = Math.floor(Math.random() * Math.floor(2));
+    bin = bin.concat(randomBit);
+  }
+
+  // Always return positive binary string
+  return '0' + bin;
+};
 
 function binToHex(bin) {
   const hex = [];
@@ -203,3 +220,4 @@ function hexToDec(hexStr) {
   // }
 // }
 
+console.log(generateDeviceID());

@@ -17,6 +17,7 @@
     "express-basic-auth": "^1.2.0",
     "faker": "^4.1.0",
     "hbs": "^4.1.0",
+    "hex2dec": "^1.1.2",
     "minimist": "^1.2.5"
   },
   "devDependencies": {
