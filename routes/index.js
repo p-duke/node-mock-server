@@ -27,7 +27,6 @@ router.get('/auth', customAuth, (req, res) => {
 })
 
 router.get("/data", function (req, res) {
-  console.log('Received request', req);
   var data = ({
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -35,6 +34,10 @@ router.get("/data", function (req, res) {
     email: faker.internet.email()
   });
   res.status(200).send(data);
+});
+
+router.get("/error", function (req, res) {
+  res.status(500).send("Not Found");
 });
 
 module.exports = router;
