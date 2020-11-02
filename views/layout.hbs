@@ -14,7 +14,16 @@
 
   <!-- Start BounceX tag. Deploy at the beginning of document head. -->
   <script>
-    (function(d) { var e = d.createElement('script'); e.src = d.location.protocol + '//tag.wknd.ai/3490/i.js'; e.async = true; d.getElementsByTagName("head")[0].appendChild(e); }(document));
+    (function(w, d) {
+      var e = d.createElement('script');
+      if (w.location.href.includes('wkndTag')) {
+        e.src = d.location.protocol + '//tag.wknd.ai/3490/wknd-tag.js';
+      } else {
+        e.src = d.location.protocol + '//tag.wknd.ai/3490/i.js';
+      }
+      e.async = true;
+      d.getElementsByTagName("head")[0].appendChild(e);
+    }(window, document));
   </script>
   <!-- End BounceX tag -->
 </head>
