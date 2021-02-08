@@ -18,6 +18,8 @@
       var e = d.createElement('script');
       if (w.location.href.includes('wkndTag')) {
         e.src = d.location.protocol + '//tag.wknd.ai/3490/wknd-tag.js';
+      } else if (w.location.href.includes('localTagRouter')) {
+        e.src = 'http://127.0.0.1:5000/3490/wknd-tag.js';
       } else {
         e.src = d.location.protocol + '//tag.wknd.ai/3490/i.js';
       }
