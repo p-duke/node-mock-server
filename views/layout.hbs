@@ -16,9 +16,13 @@
   <script>
     (function(w, d) {
       var e = d.createElement('script');
-      if (w.location.href.includes('wkndTag')) {
+      var href = w.location.href;
+
+      if (href.includes('wkndTag')) {
         e.src = d.location.protocol + '//tag.wknd.ai/3490/wknd-tag.js';
-      } else if (w.location.href.includes('localTagRouter')) {
+      } else if (href.includes('localTagRouter') && (href.includes('ijs'))) {
+        e.src = 'http://127.0.0.1:5000/3490/i.js';
+      } else if (href.includes('localTagRouter') && (href.includes('wkndTag'))) {
         e.src = 'http://127.0.0.1:5000/3490/wknd-tag.js';
       } else {
         e.src = d.location.protocol + '//tag.wknd.ai/3490/i.js';
