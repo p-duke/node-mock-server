@@ -18,17 +18,18 @@
       var e = d.createElement('script');
       var href = w.location.href;
 
-      if (href.includes('wkndTag')) {
-        e.src = d.location.protocol + '//tag.wknd.ai/3490/wknd-tag.js';
-      } else if (href.includes('localTagRouter') && (href.includes('ijs'))) {
+      if (href.includes('localTagRouter') && (href.includes('ijs'))) {
         e.src = 'http://127.0.0.1:5000/3490/i.js';
       } else if (href.includes('localTagRouter') && (href.includes('wkndTag'))) {
         e.src = 'http://127.0.0.1:5000/3490/wknd-tag.js';
       } else if (href.includes('stagingTagRouter') && (href.includes('wkndTag'))) {
         e.src = d.location.protocol + '//tag.stg.wknd.ai/3490/wknd-tag.js';
+      } else if (href.includes('wkndTag')) {
+        e.src = d.location.protocol + '//tag.wknd.ai/3490/wknd-tag.js';
       } else {
         e.src = d.location.protocol + '//tag.wknd.ai/3490/i.js';
       }
+
       e.async = true;
       d.getElementsByTagName("head")[0].appendChild(e);
     }(window, document));
