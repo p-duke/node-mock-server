@@ -18,6 +18,9 @@ function getUnauthorizedResponse(req) {
 
 /* Routes */
 router.get('/', (req, res) => {
+  var csp = "default-src 'self' \
+  ";
+  res.set("Content-Security-Policy", csp);
   res.render('index');
 })
 
