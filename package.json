@@ -17,7 +17,7 @@
     "express-basic-auth": "^1.2.0",
     "faker": "^4.1.0",
     "hbs": "^4.1.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.6"
   },
   "devDependencies": {
     "nodemon": "^1.18.4",
