@@ -11,46 +11,12 @@
     crossorigin="anonymous">
 
   <title>Mock Server</title>
-  <!-- Google tag (gtag.js) -->
-  <script>
-    var href = window.location.href;
-    if (href.includes('gtag')) {
-      var e = document.createElement('script');
-      e.src = "https://www.googletagmanager.com/gtag/js?id=G-28JPDFXVP6";
-      e.async = true;
-      document.getElementsByTagName("head")[0].appendChild(e);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-28JPDFXVP6');
-      console.log('GTAG: Placed gtag');
-    }
-  </script>
-  <!-- End Google tag (gtag.js) -->
-
   <!-- Google Tag Manager -->
-  <script>
-    var href = window.location.href;
-    if (href.includes('gtm')) {
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-
-        console.log('GTM: Placed Google Tag Manager');
-      })(window,document,'script','dataLayer','GTM-P4T2VCF');
-
-      (function(w,d,el){
-        var e = d.createElement(el);
-        e.src = "https://www.googletagmanager.com/ns.html?id=GTM-P4T2VCF";
-        e.height = "0";
-        e.width = "0";
-        e.style = "display:none;visibility:hidden";
-        d.addEventListener('DOMContentLoaded', function () { d.getElementsByTagName("body")[0].appendChild(e); });
-      })(window, document, 'iframe');
-    }
-  </script>
+  })(window,document,'script','dataLayer','GTM-P4T2VCF');</script>
   <!-- End Google Tag Manager -->
 
   <!-- Start BounceX tag. Deploy at the beginning of document head. -->
@@ -79,6 +45,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4T2VCF" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/">Sup</a>
